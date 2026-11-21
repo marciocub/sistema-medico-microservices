@@ -1,0 +1,158 @@
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: sistema-medico-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+      MYSQL_DATABASE: sistema_turnos
+      MYSQL_USER: ${DB_USER:-medico}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-root}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - sistema-medico-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_PASSWORD:-root}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Microservice: Orquestador (Port 8080)
+  microservice-orquestador:
+    build:
+      context: ./microservice-orquestador
+      dockerfile: Dockerfile
+    container_name: microservice-orquestador
+    restart: unless-stopped
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: sistema_turnos
+      DB_USER: root
+      DB_PASSWORD: ${DB_PASSWORD:-root}
+      JWT_SECRET: ${JWT_SECRET:-cambiame-en-produccion-minimo-256-bits-para-hs256-algoritmo}
+      CORS_ORIGINS: http://localhost:5173,http://localhost:3000
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - sistema-medico-network
+
+  # Microservice: Seguridad (Port 8081)
+  microservice-seguridad:
+    build:
+      context: ./microservice-seguridad
+      dockerfile: Dockerfile
+    container_name: microservice-seguridad
+    restart: unless-stopped
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: sistema_turnos
+      DB_USER: root
+      DB_PASSWORD: ${DB_PASSWORD:-root}
+      JWT_SECRET: ${JWT_SECRET:-cambiame-en-produccion-minimo-256-bits-para-hs256-algoritmo}
+      CORS_ORIGINS: http://localhost:5173,http://localhost:3000
+    ports:
+      - "8081:8081"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - sistema-medico-network
+
+  # Microservice: Pacientes (Port 8082)
+  microservice-pacientes:
+    build:
+      context: ./microservice-pacientes
+      dockerfile: Dockerfile
+    container_name: microservice-pacientes
+    restart: unless-stopped
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: sistema_turnos
+      DB_USER: root
+      DB_PASSWORD: ${DB_PASSWORD:-root}
+      CORS_ORIGINS: http://localhost:5173,http://localhost:3000
+    ports:
+      - "8082:8082"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - sistema-medico-network
+
+  # Microservice: Profesionales (Port 8083)
+  microservice-profesionales:
+    build:
+      context: ./microservice-profesionales
+      dockerfile: Dockerfile
+    container_name: microservice-profesionales
+    restart: unless-stopped
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: sistema_turnos
+      DB_USER: root
+      DB_PASSWORD: ${DB_PASSWORD:-root}
+      CORS_ORIGINS: http://localhost:5173,http://localhost:3000
+    ports:
+      - "8083:8083"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - sistema-medico-network
+
+  # Microservice: Turnos (Port 8084)
+  microservice-turnos:
+    build:
+      context: ./microservice-turnos
+      dockerfile: Dockerfile
+    container_name: microservice-turnos
+    restart: unless-stopped
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: sistema_turnos
+      DB_USER: root
+      DB_PASSWORD: ${DB_PASSWORD:-root}
+      CORS_ORIGINS: http://localhost:5173,http://localhost:3000
+    ports:
+      - "8084:8084"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - sistema-medico-network
+
+  # Frontend (React + Vite + Nginx)
+  frontend:
+    build:
+      context: ../sistema-medico-frontend
+      dockerfile: Dockerfile
+    container_name: sistema-medico-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - microservice-orquestador
+      - microservice-seguridad
+      - microservice-pacientes
+      - microservice-profesionales
+      - microservice-turnos
+    networks:
+      - sistema-medico-network
+
+networks:
+  sistema-medico-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local

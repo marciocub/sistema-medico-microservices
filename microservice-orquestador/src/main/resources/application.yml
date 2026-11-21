@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: microservice-orquestador
+
+services:
+  seguridad-url: http://localhost:8081
+  pacientes-url: http://localhost:8082
+  profesionales-url: http://localhost:8083
+  turnos-url: http://localhost:8084
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+logging:
+  level:
+    root: INFO
+    com.sistema.orquestador: DEBUG
