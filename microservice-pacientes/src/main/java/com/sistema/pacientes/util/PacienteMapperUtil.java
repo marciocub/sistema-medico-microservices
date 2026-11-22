@@ -1,7 +1,7 @@
 package com.sistema.pacientes.util;
 
 import com.sistema.pacientes.dto.PacienteResponse;
-import com.sistema.pacientes.internal.entity.PacienteEntity;
+import com.sistema.pacientes.entity.PacienteEntity;
 
 public class PacienteMapperUtil {
 

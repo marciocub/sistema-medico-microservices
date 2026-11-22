@@ -11,10 +11,10 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
     "com.sistema.pacientes"
 })
 @EnableJpaRepositories(basePackages = {
-    "com.sistema.pacientes.internal.repository"
+    "com.sistema.pacientes.repository"
 })
 @EntityScan(basePackages = {
-    "com.sistema.pacientes.internal.entity"
+    "com.sistema.pacientes.entity"
 })
 public class PacientesMedicoApplication {
     public static void main(String[] args) {

@@ -1,34 +1,29 @@
-package com.sistema.seguridad.internal.entity;
+package com.sistema.profesionales.entity;
 
-import com.sistema.seguridad.dto.Rol;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "especialidades")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UsuarioEntity {
+public class EspecialidadEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String username;
+    @Column(nullable = false, unique = true)
+    private String nombre;
 
     @Column(nullable = false)
-    private String password;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Rol rol;
+    private String descripcion;
 
     @Column(nullable = false)
-    private boolean enabled = true;
+    private boolean activo = true;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;

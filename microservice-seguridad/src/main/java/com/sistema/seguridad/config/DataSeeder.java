@@ -1,8 +1,8 @@
 package com.sistema.seguridad.config;
 
 import com.sistema.seguridad.dto.Rol;
-import com.sistema.seguridad.internal.entity.UsuarioEntity;
-import com.sistema.seguridad.internal.repository.UsuarioRepository;
+import com.sistema.seguridad.entity.UsuarioEntity;
+import com.sistema.seguridad.repository.UsuarioRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

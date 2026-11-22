@@ -1,7 +1,7 @@
 package com.sistema.turnos.util;
 
 import com.sistema.turnos.dto.TurnoResponse;
-import com.sistema.turnos.internal.entity.TurnoEntity;
+import com.sistema.turnos.entity.TurnoEntity;
 
 public class TurnoMapperUtil {
 

@@ -14,16 +14,16 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
     "com.sistema.profesionales"
 })
 @EnableJpaRepositories(basePackages = {
-    "com.sistema.turnos.internal.repository",
-    "com.sistema.seguridad.internal.repository",
-    "com.sistema.pacientes.internal.repository",
-    "com.sistema.profesionales.internal.repository"
+    "com.sistema.turnos.repository",
+    "com.sistema.seguridad.repository",
+    "com.sistema.pacientes.repository",
+    "com.sistema.profesionales.repository"
 })
 @EntityScan(basePackages = {
-    "com.sistema.turnos.internal.entity",
-    "com.sistema.seguridad.internal.entity",
-    "com.sistema.pacientes.internal.entity",
-    "com.sistema.profesionales.internal.entity"
+    "com.sistema.turnos.entity",
+    "com.sistema.seguridad.entity",
+    "com.sistema.pacientes.entity",
+    "com.sistema.profesionales.entity"
 })
 public class TurnosMedicoApplication {
     public static void main(String[] args) {

@@ -1,12 +1,13 @@
-package com.sistema.turnos.internal.service;
+package com.sistema.turnos.service;
 
-import com.sistema.turnos.*;
 import com.sistema.turnos.dto.*;
-import com.sistema.turnos.internal.entity.TurnoEntity;
-import com.sistema.turnos.internal.repository.TurnoRepository;
+import com.sistema.turnos.entity.TurnoEntity;
+import com.sistema.turnos.repository.TurnoRepository;
 import com.sistema.turnos.util.TurnoMapperUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class TurnoServiceImpl implements TurnosApi {
@@ -43,7 +44,7 @@ public class TurnoServiceImpl implements TurnosApi {
     }
 
     @Override
-    public java.util.List<TurnoResponse> listarTurnosPorPaciente(Long pacienteId) {
+    public List<TurnoResponse> listarTurnosPorPaciente(Long pacienteId) {
         return turnoRepository.findAll().stream()
                 .filter(t -> t.getPacienteId().equals(pacienteId))
                 .map(TurnoMapperUtil::toResponse)
@@ -51,7 +52,7 @@ public class TurnoServiceImpl implements TurnosApi {
     }
 
     @Override
-    public java.util.List<TurnoResponse> listarTurnos() {
+    public List<TurnoResponse> listarTurnos() {
         return turnoRepository.findAll().stream()
                 .map(TurnoMapperUtil::toResponse)
                 .toList();

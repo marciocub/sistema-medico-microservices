@@ -1,8 +1,7 @@
-package com.sistema.turnos.internal.repository;
+package com.sistema.turnos.repository;
 
-import com.sistema.turnos.internal.entity.TurnoEntity;
+import com.sistema.turnos.entity.TurnoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface TurnoRepository extends JpaRepository<TurnoEntity, Long> {

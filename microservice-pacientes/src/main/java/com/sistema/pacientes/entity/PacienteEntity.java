@@ -1,24 +1,35 @@
-package com.sistema.profesionales.internal.entity;
+package com.sistema.pacientes.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "especialidades")
+@Table(name = "pacientes")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class EspecialidadEntity {
-
+public class PacienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String nombre;
+
+    @Column(nullable = false)
+    private String apellido;
+
+    @Column(nullable = false, unique = true)
+    private String documento;
+
+    @Column(nullable = false)
+    private String telefono;
+
+    @Column(nullable = false)
+    private String email;
 
     @Column(nullable = false)
     private boolean activo = true;

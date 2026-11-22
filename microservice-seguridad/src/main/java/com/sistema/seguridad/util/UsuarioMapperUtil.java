@@ -1,7 +1,7 @@
 package com.sistema.seguridad.util;
 
 import com.sistema.seguridad.dto.UsuarioResponse;
-import com.sistema.seguridad.internal.entity.UsuarioEntity;
+import com.sistema.seguridad.entity.UsuarioEntity;
 
 public class UsuarioMapperUtil {
 

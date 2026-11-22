@@ -1,7 +1,7 @@
 package com.sistema.profesionales.util;
 
 import com.sistema.profesionales.dto.EspecialidadResponse;
-import com.sistema.profesionales.internal.entity.EspecialidadEntity;
+import com.sistema.profesionales.entity.EspecialidadEntity;
 
 public class EspecialidadMapperUtil {
 

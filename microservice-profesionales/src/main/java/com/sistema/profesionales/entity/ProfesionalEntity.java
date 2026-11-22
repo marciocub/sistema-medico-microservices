@@ -1,4 +1,4 @@
-package com.sistema.profesionales.internal.entity;
+package com.sistema.profesionales.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,9 +15,6 @@ public class ProfesionalEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "usuario_id", nullable = true)
-    private Long usuarioId;
 
     @Column(nullable = false)
     private String nombre;

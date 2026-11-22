@@ -1,7 +1,7 @@
 package com.sistema.profesionales.util;
 
 import com.sistema.profesionales.dto.ProfesionalResponse;
-import com.sistema.profesionales.internal.entity.ProfesionalEntity;
+import com.sistema.profesionales.entity.ProfesionalEntity;
 
 public class ProfesionalMapperUtil {
 

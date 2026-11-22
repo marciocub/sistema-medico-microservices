@@ -1,4 +1,4 @@
-package com.sistema.turnos.internal.entity;
+package com.sistema.turnos.entity;
 
 import com.sistema.turnos.dto.EstadoTurno;
 import jakarta.persistence.*;
