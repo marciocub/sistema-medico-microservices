@@ -1,6 +1,7 @@
 package com.sistema.turnos.repository;
 
 import com.sistema.turnos.entity.TurnoEntity;
+import java.time.LocalDateTime;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

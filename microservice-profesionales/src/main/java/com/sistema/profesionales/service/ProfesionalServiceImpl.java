@@ -2,6 +2,7 @@ package com.sistema.profesionales.service;
 
 import com.sistema.profesionales.dto.ProfesionalRequest;
 import com.sistema.profesionales.dto.ProfesionalResponse;
+import com.sistema.profesionales.dto.EspecialidadResponse;
 import com.sistema.profesionales.entity.ProfesionalEntity;
 import com.sistema.profesionales.repository.ProfesionalRepository;
 import com.sistema.profesionales.util.ProfesionalMapperUtil;

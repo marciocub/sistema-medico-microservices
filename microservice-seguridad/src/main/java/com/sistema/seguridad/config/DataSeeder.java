@@ -1,6 +1,5 @@
 package com.sistema.seguridad.config;
 
-import com.sistema.seguridad.dto.Rol;
 import com.sistema.seguridad.entity.UsuarioEntity;
 import com.sistema.seguridad.repository.UsuarioRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -14,11 +13,13 @@ public class DataSeeder {
     @Bean
     CommandLineRunner initAdminUser(UsuarioRepository usuarioRepository, BCryptPasswordEncoder passwordEncoder) {
         return args -> {
-            if (!usuarioRepository.existsByUsername("admin")) {
+            // Check if admin user exists by trying to find it
+            boolean adminExists = usuarioRepository.findByUsername("admin").isPresent();
+            if (!adminExists) {
                 UsuarioEntity admin = UsuarioEntity.builder()
                         .username("admin")
                         .password(passwordEncoder.encode("admin123"))
-                        .rol(Rol.ADMIN)
+                        .rol("ADMIN")
                         .enabled(true)
                         .build();
                 usuarioRepository.save(admin);

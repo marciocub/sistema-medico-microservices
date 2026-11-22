@@ -1,6 +1,5 @@
 package com.sistema.seguridad.service;
 
-import com.sistema.seguridad.dto.Rol;
 import com.sistema.seguridad.entity.UsuarioEntity;
 import com.sistema.seguridad.repository.UsuarioRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,7 +20,7 @@ public class UsuarioServiceImpl {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UsuarioEntity crearUsuario(String username, String password, Rol rol) {
+    public UsuarioEntity crearUsuario(String username, String password, String rol) {
         UsuarioEntity usuario = UsuarioEntity.builder()
                 .id(UUID.randomUUID().toString())
                 .username(username)

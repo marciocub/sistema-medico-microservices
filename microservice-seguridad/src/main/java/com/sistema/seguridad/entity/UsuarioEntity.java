@@ -11,6 +11,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class UsuarioEntity {
     @Id
     @Column(name = "id", updatable = false, nullable = false)
@@ -37,8 +38,14 @@ public class UsuarioEntity {
     @Column(nullable = false)
     private boolean credentialsNonExpired = true;
 
+    @Column(name = "rol")
+    private String rol = "ROLE_USER";
+
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
     @PrePersist
     protected void onCreate() {
-        // UUID already generated
+        createdAt = LocalDateTime.now();
     }
 }

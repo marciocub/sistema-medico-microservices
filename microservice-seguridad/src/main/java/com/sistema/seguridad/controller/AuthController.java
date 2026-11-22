@@ -28,7 +28,7 @@ public class AuthController {
         try {
             var authResponse = seguridadApi.autenticar(request);
             UsuarioResponse usuario = seguridadApi.obtenerUsuarioPorUsername(request.username());
-            String token = tokenService.generarToken(usuario.username(), usuario.rol().name());
+            String token = tokenService.generarToken(usuario.username(), usuario.rol());
 
             Cookie cookie = new Cookie("SESSION_TOKEN", token);
             cookie.setHttpOnly(true);
@@ -40,7 +40,7 @@ public class AuthController {
 
             return ResponseEntity.ok(Map.of(
                 "username", usuario.username(),
-                "rol", usuario.rol().name()
+                "rol", usuario.rol()
             ));
         } catch (Exception e) {
             return ResponseEntity.status(401).body(Map.of("error", "Credenciales invalidas"));
@@ -67,7 +67,7 @@ public class AuthController {
         return ResponseEntity.ok(Map.of(
             "id", usuario.id(),
             "username", usuario.username(),
-            "rol", usuario.rol().name()
+            "rol", usuario.rol()
         ));
     }
 }

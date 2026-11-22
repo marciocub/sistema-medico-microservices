@@ -12,7 +12,7 @@ public class UsuarioMapperUtil {
         return new UsuarioResponse(
             entity.getId(),
             entity.getUsername(),
-            entity.getRol(),
+            entity.getRol(),  // Now String, matches DTO
             entity.isEnabled(),
             entity.getCreatedAt()
         );

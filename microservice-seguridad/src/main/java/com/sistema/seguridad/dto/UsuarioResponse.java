@@ -3,9 +3,9 @@ package com.sistema.seguridad.dto;
 import java.time.LocalDateTime;
 
 public record UsuarioResponse(
-    Long id,
+    String id,
     String username,
-    Rol rol,
+    String rol,
     boolean enabled,
     LocalDateTime createdAt
 ) {}

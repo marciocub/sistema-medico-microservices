@@ -1,5 +1,6 @@
 package com.sistema.turnos.service;
 
+import com.sistema.turnos.TurnosApi;
 import com.sistema.turnos.dto.*;
 import com.sistema.turnos.entity.TurnoEntity;
 import com.sistema.turnos.repository.TurnoRepository;
